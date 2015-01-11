@@ -127,7 +127,7 @@ Knobby {
     }
 
     init {
-        var f, f_done;
+        var f_done;
 
         spaceNav = SpaceNavThreshy.new;
 
