@@ -216,6 +216,21 @@ KnobbyPanel {
 
     var speed;
 
+    *example {
+        var w, list_of_knobs, panel;
+
+        w = Window("KnobbyPanel", Rect(20,20,1000,300));
+        w.view.decorator = FlowLayout(w.view.bounds, 10@10, 20@20);
+
+        list_of_knobs = Array.fill(4, {Knob(w.view,200@200).background_(Color.gray)} );
+
+        panel = KnobbyPanel(list_of_knobs);
+
+        w.front; // make GUI appear
+
+        ^#[w, list_of_knobs, panel];
+    }
+
     *new {
         | list_of_knobs |
         ^super.new.init(list_of_knobs);
@@ -260,7 +275,7 @@ KnobbyPanel {
         };
 
         done[\on_turn_right] = {
-            sched_right = nil
+            sched_right = nil;
         };
 
 
@@ -279,7 +294,7 @@ KnobbyPanel {
         };
 
         done[\on_turn_left] = {
-            sched_left = nil
+            sched_left = nil;
         };
 
 
