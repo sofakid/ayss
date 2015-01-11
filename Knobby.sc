@@ -246,7 +246,7 @@ KnobbyPanel {
         n = knobs.size;
         current_knob = knobs[0];
 
-        speed = 1;
+        speed = 1; // just an initial value, this gets set by accel.
 
         knobby = Knobby();
 
@@ -260,6 +260,7 @@ KnobbyPanel {
         first[\on_lift_up]   = { this.colorKnob(Color.red); };
         first[\on_lift_down] = { this.colorKnob(Color.green); };
 
+        // start turning right
         first[\on_turn_right] = {
 
             sched_right = 0.1;
@@ -269,16 +270,18 @@ KnobbyPanel {
             });
         };
 
+        // change the speed by how much you're turning
         update[\on_turn_right] = {
             | d |
             this.accel(d);
         };
 
+        // stop turning
         done[\on_turn_right] = {
             sched_right = nil;
         };
 
-
+        // start turning
         first[\on_turn_left] = {
 
             sched_left = 0.1;
@@ -288,11 +291,13 @@ KnobbyPanel {
             });
         };
 
+        // change the speed by how much you're turning
         update[\on_turn_left] = {
             | d |
             this.accel(d);
         };
 
+        // stop turning
         done[\on_turn_left] = {
             sched_left = nil;
         };
